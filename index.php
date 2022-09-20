@@ -53,7 +53,7 @@
                         <li>
                             <input type="checkbox" name="checkbox" id="list-1" />
 
-                            <label class="label-2"> <?php echo $item ?></label>
+                            <label class="label-2"> <?php echo $item ?><?php echo  $row["date_added"] ?></label>
                             <i class="fa-solid fa-trash-can deleteIcon"></i>
 
                             <i class="fa-solid fa-pencil editIcon "></i>
