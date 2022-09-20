@@ -112,8 +112,16 @@ input[type="checkbox" i] {
   padding: initial;
   border: 4px solid #1080ec;
 }
-input#list-1 {
+/* input#list-1 {
   float: left;
+} */
+div#list {
+  margin-right: 50px;
+}
+span {
+
+  float: right;
+  padding-left: 17px;
 }
 /* LISTS */
 /* div#list {
