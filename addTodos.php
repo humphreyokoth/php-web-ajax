@@ -1,8 +1,17 @@
     <?php
     include('./db_connnection.php');
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(isset($_POST["item"]) ? $_POST["item"] : null);
-    }else
+        if(isset($_POST["addtask"])){
+          if( $_POST["todo_item"] != NULL){
+            todo($_POST["todo_item"]);
+          }
+        }elseif(isset($_POST["edited"])){
+
+        }elseif(isset($_POST["deleted"])){
+
+        }
+        header("Location:index.php");
+    }
     // $conn = OpenCon();
     // //Add to list items to DB
     // $to_do_item = isset($_POST["item"]) ? $_POST["item"] : null;

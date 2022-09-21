@@ -13,12 +13,12 @@
 
 <body>
     <?php
-    //require_once("./introphp.php");
+    require_once("./introphp.php");
     include 'addTodos.php';
     ?>
 
     <div class="container">
-        <form method="post" class="addTask" id="addForm" name="todoList">
+        <form  action="addTodos.php" method="post" id="addTask">
             <div class="row">
                 <div class="col-1">
                     <input type="checkbox" name="checkbox" id="todo-checkbox" checked /><label class="label-1">
@@ -29,7 +29,7 @@
                 <div class="custom-add">
                     <input type="text" class="custom-add-input" id="input-add" name="item" placeholder="Add new.." />
                     <i class="fas fa-calendar-alt"></i>
-                    <button type="submit" class="submit" id="submit" value="submit">Add</button>
+                    <button type="submit" class="submit" id="submit"  name="addtask"  value="submit">Add</button>
                 </div>
             </div>
         </form>
@@ -48,9 +48,9 @@
 
                <ul class="list-li" id="task">
                     <?php
-                   // $list = todo();
-                   if (is_array($to_do_item) || is_object($to_do_item)){
-                    foreach ($to_do_item as $key => $item) { ?>
+                   $list = todo();
+                   if (is_array($list) || is_object($list)){
+                    foreach ($list as $key => $item) { ?>
                         <li>
                             <input type="checkbox" name="checkbox" id="list-1" />
 
