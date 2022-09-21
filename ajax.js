@@ -12,9 +12,9 @@ $.ajax({
 }).then(
     function(response){
         // Check item added to DB
-        console.log(response);
+        //console.log(response);
         if(response.message == "success"){
-            console.log(response.data);
+            //console.log(response.data);
             // Reloading page after successful submission of data.
             //location.reload();
            
