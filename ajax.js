@@ -1,21 +1,22 @@
 $(document).ready(function(){
 // Form input to add item
-$('#input-add').submit(function(e){
+$('#addTask').submit(function(e){
 e.preventDefault();
 
 formData = $(this).serialize();
 
 $.ajax({
     type:"POST",
-    url:"./addTodos.php",
+    url:"addTodos.php",
     data:formData,
 }).then(
     function(response){
         // Check item added to DB
+        console.log("###data",response);
         if(response==="success"){
             // Reloading page after successful submission of data.
             location.reload();
-            console.log("###data");
+           
         }else {
             alert ("Not Successful" + "\n" + response);
         }

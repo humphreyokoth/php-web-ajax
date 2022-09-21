@@ -13,7 +13,7 @@
 
 <body>
     <?php
-    require_once("./introphp.php");
+    //include("./introphp.php");
     include 'addTodos.php';
     ?>
 
@@ -49,7 +49,7 @@
                <ul class="list-li" id="task">
                     <?php
                    $list = todo();
-                   if (is_array($list) || is_object($list)){
+                  if (is_array($list) || is_object($list)){
                     foreach ($list as $key => $item) { ?>
                         <li>
                             <input type="checkbox" name="checkbox" id="list-1" />
@@ -60,7 +60,7 @@
                             <i class="fa-solid fa-pencil editIcon "></i>
 
                         </li>
-                    <?php } }?>
+                    <?php }} ?>
                 </ul>
                 </ul>
             </div>
@@ -69,7 +69,7 @@
         </div>
 
     </div>
-<script src="./ajax.js"></script>
+<script src="ajax.js"></script>
 
 </body>
 

@@ -10,7 +10,7 @@ returns the list without that item on the position index.
 
 //Create a global variable to_do_list with a list of 5 items.
 // Declaring global variables of a todoList.
-$GLOBALS['to_do_list']=["shopping","cleaning","reading","praying","swimming"];
+$GLOBALS['to_do_list']=["shopping","cleaning","reading","praying"];//,"swimming"
 
 
 //Write a function that returns the to-do list.
