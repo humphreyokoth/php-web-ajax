@@ -13,8 +13,9 @@
 
 <body>
     <?php
-    //include("./introphp.php");
-    include 'addTodos.php';
+   
+    include("./introphp.php");
+   
     ?>
 
     <div class="container">
@@ -47,22 +48,12 @@
             <div class="list" id="list">
 
                <ul class="list-li" id="task">
-                    <?php
-                   $list = todo();
-                  if (is_array($list) || is_object($list)){
-                    foreach ($list as $key => $item) { ?>
-                        <li>
-                            <input type="checkbox" name="checkbox" id="list-1" />
-
-                            <label class="label-2"> <?php echo $item ?></label>
-                            <i class="fa-solid fa-trash-can deleteIcon"></i>
-
-                            <i class="fa-solid fa-pencil editIcon "></i>
-
-                        </li>
-                    <?php }} ?>
+                <?php
+                  get_todo_list();
+                ?>
+                  
                 </ul>
-                </ul>
+                
             </div>
 
 

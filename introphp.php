@@ -1,51 +1,78 @@
 <?php
+include  ("./db_connnection.php");
 
-/**Create a global variable to_do_list with a list of 5 items.
-Write a function that returns the to-do list.
-Write a function with two parameters(index, item) and for this function replace the item at the position 
-index with the item and return a list with an updated item.
-Write a function with one parameter(index) that removes the item at the position item and 
-returns the list without that item on the position index.
-*/
+// Server request.
 
-//Create a global variable to_do_list with a list of 5 items.
-// Declaring global variables of a todoList.
-$GLOBALS['to_do_list']=["shopping","cleaning","reading","praying"];//,"swimming"
+  if(isset( $_POST["item"])){
+    //$conn = OpenCon();
+    insert_todo_item($_POST["item"]);
+ // }
+}elseif(isset($_POST["edited"])){
 
-
-//Write a function that returns the to-do list.
-//Returning list of items in todolist using function.
-function todo(){
-
-  $to_do_list = $GLOBALS['to_do_list'];
-  return $to_do_list;
+}elseif(isset($_POST["deleted"])){
 
 }
 
 
-//Write a function with two parameters(index, item) and for this function replace the item at the position 
-//index with the item and return a list with an updated item.
-function update_todolist($index,$item){
-  $GLOBALS['to_do_list'][$index]=$item;
-return $GLOBALS['to_do_list'];
+function insert_todo_item($to_do_item){
+   $conn = OpenCon();
+ 
+
+     // Date declaring.
+     $date = date('Y-m-d H:i:s');
+     // Inserting into table todolist from input form.
+     $sql = "INSERT INTO to_do_list_items(`title`,`date_added`) VALUES ('$to_do_item','$date')";
+     // Return results.
+     $result = $conn->query($sql);
+     if ($result) {
+          $response= [];
+      $response["message"] =  'success';
+      $response["data"] = [1,2,3] ;
+     echo json_encode($response);
+    //  query to return added item
+
+     } else {
+    
+      $response= [];
+      $response["message"] =  ' Fail.';
+    echo json_encode($response);
+
+     }
+    
+
+ }
+
+function get_todo_list(){
+  $conn = OpenCon();
+  $sql = "SELECT * FROM to_do_list_items";
+   
+  $result = $conn->query($sql);
+ 
+
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) { ?>
+        <li>
+            <input type="checkbox" name="checkbox" id="list-1" />
+
+            <label class="label-2"> <?php  echo  $row["title"].  "<br>";?></label> <span><?php echo  $row["date_added"] ?></span>
+            <i class="fa-solid fa-trash-can deleteIcon"></i>
+
+            <i class="fa-solid fa-pencil editIcon "></i>
+            
+           
+
+        </li>
+    <?php } 
+ 
+     
+    } else {
+      echo "0 results";
+    }
+
 }
 
 
-//Write a function with one parameter(index) that removes the item at the position item and 
-//Returns the list without that item on the position index 
-function delete_todolist_item($index){
- unset($GLOBALS['to_do_list'][$index]);
-return $GLOBALS['to_do_list'];
-}
-
-//Returning list of items in todolist.
-$newList = [];
-$newList = update_todolist(1,"playingFootball");
-//var_dump($newList);
-
-// Returning updated list.
-$updatedList = delete_todolist_item(3);
-//var_dump($updatedList);
 
  
 ?>
