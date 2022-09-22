@@ -14,12 +14,12 @@ $.ajax({
        //var jsonData= JSON.parse(response);
         // Check item added to DB
         //console.log("data",response);
-        if(response ==="success"){
-          alert(`success${response}`);
+        if(response =="success"){
+         alert(`success${response}`);
             
             //console.log(response.data);
             // Reloading page after successful submission of data.
-            //location.reload();
+           // location.reload();
            
         }else {
             alert ("Not Successful" + "\n" + response);

@@ -19,7 +19,7 @@
     ?>
 
     <div class="container">
-        <form  action="addTodos.php" method="post" id="addTask">
+        <form  action="todolist_post_get.php" method="post" id="addTask">
             <div class="row">
                 <div class="col-1">
                     <input type="checkbox" name="checkbox" id="todo-checkbox" checked /><label class="label-1">

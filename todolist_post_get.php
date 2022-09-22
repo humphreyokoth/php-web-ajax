@@ -22,14 +22,14 @@ function insert_todo_item($to_do_item)
   // Return results.
   $result = $conn->query($sql);
   if ($result) {
-  // $result = [];
+  $result = [];
    
     $response["message"] =  'success';
     $response['data'] = $result;
     //$response["data"] = [1, 2, 3];
     //echo json_encode($response);
     //  query to return added item
-    if (isset($_POST["item"])){
+    if (isset($_POST["data"])){
       
       echo json_encode($response);
     }
