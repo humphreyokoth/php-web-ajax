@@ -29,6 +29,7 @@
 
                 <div class="custom-add">
                     <input type="text" class="custom-add-input" id="input-add" name="item" placeholder="Add new.." />
+                    <input type="hidden"  name="insert_item" value="insert_item" />
                     <i class="fas fa-calendar-alt"></i>
                     <button type="submit" class="submit" id="submit"  name="addtask"  value="submit">Add</button>
                 </div>
@@ -47,7 +48,7 @@
 
             <div class="list" id="list">
 
-               <ul class="list-li" id="task-list">
+               <ul class="list-li  task-list"   id="task-list">
                 <?php
                   get_todo_list();
                 ?>

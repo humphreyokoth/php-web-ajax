@@ -3,7 +3,10 @@
 include("./db_connnection.php");
 
 //Posting to db query with insert method..
-if (isset($_POST["item"])) {
+if (isset($_POST["item"]) && 
+isset($_POST["insert_item"])
+
+) {
   insert_todo_item($_POST["item"]);
 } elseif (isset($_POST["edited"])) {
 } elseif (isset($_POST["deleted"])) {
@@ -21,27 +24,44 @@ function insert_todo_item($to_do_item)
   $sql = "INSERT INTO to_do_list_items(`title`,`date_added`) VALUES ('$to_do_item','$date')";
   // Return results.
   $result = $conn->query($sql);
+
+ // error_log(print_r($conn) , 3, "./php_error.log");
   if ($result) {
-  $result = [];
-   
-    $response["message"] =  'success';
-    $response['data'] = $result;
-    //$response["data"] = [1, 2, 3];
-    //echo json_encode($response);
+   // $result = []; 
+    
+    $row = get_last_todo_item($conn);
+    //error_log(print_r($row,true) . "\n", 3, "./php_error.log");
     //  query to return added item
-    if (isset($_POST["data"])){
-      
-      echo json_encode($response);
-    }
-  
+    // like lower function to lowercase;
+    //$result = get_todo_item_by_title($conn,$to_do_item);
+    $response["message"] =  'success';
+
+    $response['data'] =  $row ;
+    echo json_encode($response);
+    
+    // }
   } else {
 
-   // $response = [];
+     $response = [];
     $response["message"] =  ' Fail.';
-    echo json_encode($response);
+    echo ("Not successful");
   }
 }
 
+// 
+function get_last_todo_item($conn){
+  
+  $get_added_item = "SELECT * FROM to_do_list_items ORDER BY  id  DESC limit 1";
+  $result = $conn->query($get_added_item);
+  $row = $result -> fetch_assoc();
+  return $row;
+}
+function get_todo_item_by_title($conn,$to_do_item){
+  
+  $get_added_item = "SELECT * FROM to_do_list_items WHERE  title = $to_do_item ";
+  $result = $conn->query($get_added_item);
+  return $result;
+}
 
 // Retrieve from DB method
 function get_todo_list()
@@ -55,9 +75,10 @@ function get_todo_list()
   if ($result->num_rows > 0) {
     // $array1 = array();
     // output data of each row
-    while ($row = $result->fetch_assoc()) { 
-      // array_push($array1,$row["title"], $row["date_added"] );?>
-    
+    while ($row = $result->fetch_assoc()) {
+      // array_push($array1,$row["title"], $row["date_added"] );
+?>
+
       <li>
         <input type="checkbox" name="checkbox" id="list-1" />
 

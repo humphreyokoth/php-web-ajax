@@ -5,24 +5,26 @@ e.preventDefault();
 
 formData = $(this).serialize();
 
+
 $.ajax({
     type:"POST",
     url:"todolist_post_get.php",
     data:formData,
 }).then(
+    
     function(response){
-       //var jsonData= JSON.parse(response);
+        //console.log("data",formData);
+          response = JSON.parse(response);
         // Check item added to DB
-        //console.log("data",response);
-        if(response =="success"){
-         alert(`success${response}`);
-            
-            //console.log(response.data);
-            // Reloading page after successful submission of data.
-           // location.reload();
-           
+        console.log( response);
+        if(response.message=="success"){
+            $(".task-list").append('<li> <input type="checkbox" name="checkbox" id="list-1" /> '+ response.data.title +  '<i class= "fa-solid fa-trash-can"> </i> <i class="fa-solid fa-pencil"></i> </li>');
+            // const li = formData;
+        
+            // ul.innerHTML += li;
+        
         }else {
-            alert ("Not Successful" + "\n" + response);
+            alert ("Not Successful####" + "\n" + response);
         }
     },
     function (){
