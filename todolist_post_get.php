@@ -27,41 +27,33 @@ function insert_todo_item($to_do_item)
 
  // error_log(print_r($conn) , 3, "./php_error.log");
   if ($result) {
-   // $result = []; 
-    
     $row = get_last_todo_item($conn);
-    //error_log(print_r($row,true) . "\n", 3, "./php_error.log");
-    //  query to return added item
-    // like lower function to lowercase;
-    //$result = get_todo_item_by_title($conn,$to_do_item);
     $response["message"] =  'success';
-
     $response['data'] =  $row ;
     echo json_encode($response);
     
-    // }
   } else {
 
-     $response = [];
+    //$response = [];
     $response["message"] =  ' Fail.';
     echo ("Not successful");
   }
 }
 
-// 
+// Get todo item by id from DB.
 function get_last_todo_item($conn){
-  
   $get_added_item = "SELECT * FROM to_do_list_items ORDER BY  id  DESC limit 1";
   $result = $conn->query($get_added_item);
   $row = $result -> fetch_assoc();
   return $row;
 }
-function get_todo_item_by_title($conn,$to_do_item){
+// Get todo item by title from DB.
+// function get_todo_item_by_title($conn,$to_do_item){
   
-  $get_added_item = "SELECT * FROM to_do_list_items WHERE  title = $to_do_item ";
-  $result = $conn->query($get_added_item);
-  return $result;
-}
+//   $get_added_item = "SELECT * FROM to_do_list_items WHERE  title = $to_do_item ";
+//   $result = $conn->query($get_added_item);
+//   return $result;
+// }
 
 // Retrieve from DB method
 function get_todo_list()
