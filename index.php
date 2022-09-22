@@ -14,7 +14,7 @@
 <body>
     <?php
    
-    include("./introphp.php");
+    include("./todolist_post_get.php");
    
     ?>
 
@@ -47,7 +47,7 @@
 
             <div class="list" id="list">
 
-               <ul class="list-li" id="task">
+               <ul class="list-li" id="task-list">
                 <?php
                   get_todo_list();
                 ?>

@@ -1,22 +1,20 @@
 <?php
+// importing db connection.
 include("./db_connnection.php");
 
-// Server request.
-
+//Posting to db query with insert method..
 if (isset($_POST["item"])) {
-  //$conn = OpenCon();
   insert_todo_item($_POST["item"]);
-  // }
 } elseif (isset($_POST["edited"])) {
 } elseif (isset($_POST["deleted"])) {
-}
+};
 
 
+
+// Post todo item method.
 function insert_todo_item($to_do_item)
 {
   $conn = OpenCon();
-
-
   // Date declaring.
   $date = date('Y-m-d H:i:s');
   // Inserting into table todolist from input form.
@@ -24,20 +22,28 @@ function insert_todo_item($to_do_item)
   // Return results.
   $result = $conn->query($sql);
   if ($result) {
-    $response = [];
+  // $result = [];
+   
     $response["message"] =  'success';
-    $response["data"] = [1, 2, 3];
-    echo json_encode($response);
+    $response['data'] = $result;
+    //$response["data"] = [1, 2, 3];
+    //echo json_encode($response);
     //  query to return added item
-
+    if (isset($_POST["item"])){
+      
+      echo json_encode($response);
+    }
+  
   } else {
 
-    $response = [];
+   // $response = [];
     $response["message"] =  ' Fail.';
     echo json_encode($response);
   }
 }
 
+
+// Retrieve from DB method
 function get_todo_list()
 {
   $conn = OpenCon();
@@ -47,10 +53,10 @@ function get_todo_list()
 
 
   if ($result->num_rows > 0) {
-    $array1 = array();
+    // $array1 = array();
     // output data of each row
     while ($row = $result->fetch_assoc()) { 
-      array_push($array1,$row["title"], $row["date_added"] );?>
+      // array_push($array1,$row["title"], $row["date_added"] );?>
     
       <li>
         <input type="checkbox" name="checkbox" id="list-1" />

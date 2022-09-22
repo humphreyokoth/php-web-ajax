@@ -7,13 +7,16 @@ formData = $(this).serialize();
 
 $.ajax({
     type:"POST",
-    url:"introphp.php",
+    url:"todolist_post_get.php",
     data:formData,
 }).then(
     function(response){
+       //var jsonData= JSON.parse(response);
         // Check item added to DB
-        //console.log(response);
-        if(response.message == "success"){
+        //console.log("data",response);
+        if(response ==="success"){
+          alert(`success${response}`);
+            
             //console.log(response.data);
             // Reloading page after successful submission of data.
             //location.reload();
