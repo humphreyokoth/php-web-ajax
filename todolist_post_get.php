@@ -3,8 +3,9 @@
 include("./db_connnection.php");
 
 //Posting to db query with insert method..
-if (isset($_POST["item"]) && 
-isset($_POST["insert_item"])
+if (
+  isset($_POST["item"]) &&
+  isset($_POST["insert_item"])
 
 ) {
   insert_todo_item($_POST["item"]);
@@ -25,13 +26,12 @@ function insert_todo_item($to_do_item)
   // Return results.
   $result = $conn->query($sql);
 
- // error_log(print_r($conn) , 3, "./php_error.log");
+  // error_log(print_r($conn) , 3, "./php_error.log");
   if ($result) {
     $row = get_last_todo_item($conn);
     $response["message"] =  'success';
-    $response['data'] =  $row ;
+    $response['data'] =  $row;
     echo json_encode($response);
-    
   } else {
 
     //$response = [];
@@ -41,13 +41,14 @@ function insert_todo_item($to_do_item)
 }
 
 // Get todo item by id from DB.
-function get_last_todo_item($conn){
+function get_last_todo_item($conn)
+{
   $get_added_item = "SELECT * FROM to_do_list_items ";
-  $get_item =[];
+  $get_item = [];
   $result = $conn->query($get_added_item);
   while ($row = $result->fetch_assoc()) {
     $get_item = $row;
- }
+  }
   return $get_item;
 }
 
@@ -62,24 +63,24 @@ function get_todo_list()
 
 
   if ($result->num_rows > 0) {
-   
+
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-     
-     ?>
 
-<li>
-          <input type="checkbox" name="checkbox" id="list-1" />
-          <span><?php echo  $row["date_added"] ?></span>
-          <i class="fa-solid fa-trash-can deleteIcon"></i>
-  
-          <i class="fa-solid fa-pencil editIcon "></i>
-  
-          <label class="label-2"> <?php echo  $row["title"] .  "<br>"; ?></label>
-  
-  
-  
-        </li>
+?>
+
+      <li>
+        <input type="checkbox" name="checkbox" id="list-1" />
+        <span><?php echo  $row["date_added"] ?></span>
+        <i class="fa-solid fa-trash-can deleteIcon"></i>
+
+        <i class="fa-solid fa-pencil editIcon "></i>
+
+        <label class="label-2"> <?php echo  $row["title"] .  "<br>"; ?></label>
+
+
+
+      </li>
 <?php }
   } else {
     echo "0 results";
