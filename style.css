@@ -337,9 +337,13 @@ input.date {
     width: -31px;
     margin-left: 22px;
   }
-  div#list {
+  /* div#list {
     margin-right: 20px;
-  }
+
+  } */
+  div#list {
+    margin-right: -57px;
+}
 }
 
 @media (max-width: 768px) {
@@ -375,7 +379,7 @@ input.date {
     padding: 28px;
   }
 
-  /* div#list {
+  div#list {
     margin-right: 25px;
-} */
+}
 }

@@ -86,7 +86,39 @@ function get_todo_list()
     echo "0 results";
   }
 }
+// Update todo list item by title.
+function update_todo_item($title){
+  $conn = OpenCon();
 
+  // Inserting into table todolist from input form.
+  $sql = "UPDATE `to_do_list_items` (`title`) VALUES ('$title')";
+
+  // Return results.
+  $result = $conn->query($sql);
+
+  // error_log(print_r($conn) , 3, "./php_error.log");
+  if ($result) {
+  
+    echo ("successfully updated");
+  } else {
+
+  
+    echo ("Not successful");
+  }
+  
+}
+// Delete todo item from list
+function delete_todo_item($id){
+  $conn = OpenCon();
+  $sql = "DELETE FROM `to_do_list_items` WHERE id=$id ";
+  $result = $conn->query($sql);
+
+  if($result){
+    echo "successfully deleted";
+  }else{
+    echo "Unable to delete";
+  }
+}
 
 
 
