@@ -19,7 +19,7 @@ function insert_todo_item($to_do_item)
 {
   $conn = OpenCon();
   // Date declaring.
-  $date = date('Y-m-d H:i:s');
+  $date = date('Y-m-d');
   // Inserting into table todolist from input form.
   $sql = "INSERT INTO to_do_list_items(`title`,`date_added`) VALUES ('$to_do_item','$date')";
   // Return results.
@@ -42,18 +42,15 @@ function insert_todo_item($to_do_item)
 
 // Get todo item by id from DB.
 function get_last_todo_item($conn){
-  $get_added_item = "SELECT * FROM to_do_list_items ORDER BY  id  DESC limit 1";
+  $get_added_item = "SELECT * FROM to_do_list_items ";
+  $get_item =[];
   $result = $conn->query($get_added_item);
-  $row = $result -> fetch_assoc();
-  return $row;
+  while ($row = $result->fetch_assoc()) {
+    $get_item = $row;
+ }
+  return $get_item;
 }
-// Get todo item by title from DB.
-// function get_todo_item_by_title($conn,$to_do_item){
-  
-//   $get_added_item = "SELECT * FROM to_do_list_items WHERE  title = $to_do_item ";
-//   $result = $conn->query($get_added_item);
-//   return $result;
-// }
+
 
 // Retrieve from DB method
 function get_todo_list()
@@ -65,23 +62,24 @@ function get_todo_list()
 
 
   if ($result->num_rows > 0) {
-    // $array1 = array();
+   
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-      // array_push($array1,$row["title"], $row["date_added"] );
-?>
+     
+     ?>
 
-      <li>
-        <input type="checkbox" name="checkbox" id="list-1" />
-
-        <label class="label-2"> <?php echo  $row["title"] .  "<br>"; ?></label> <span><?php echo  $row["date_added"] ?></span>
-        <i class="fa-solid fa-trash-can deleteIcon"></i>
-
-        <i class="fa-solid fa-pencil editIcon "></i>
-
-
-
-      </li>
+<li>
+          <input type="checkbox" name="checkbox" id="list-1" />
+          <span><?php echo  $row["date_added"] ?></span>
+          <i class="fa-solid fa-trash-can deleteIcon"></i>
+  
+          <i class="fa-solid fa-pencil editIcon "></i>
+  
+          <label class="label-2"> <?php echo  $row["title"] .  "<br>"; ?></label>
+  
+  
+  
+        </li>
 <?php }
   } else {
     echo "0 results";
